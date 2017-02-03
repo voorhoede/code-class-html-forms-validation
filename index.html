@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width" />
+	<title>HTML Form Validation</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="stylesheet" href="assets/main.css" />
+</head>
+<body>
+
+<form action="/" id="myForm">
+	<div class="row">
+		<input id="text" name="text" type="text" />
+		<label for="text">Text</label>
+	</div>
+	<div class="row">
+		<input required id="requiredText" name="requiredText" type="text" />
+		<label for="requiredText">Zip code</label>
+	</div>
+	<div class="row">
+		<input required id="pattern" name="pattern" type="text" />
+		<label for="pattern">Pattern</label>
+	</div>
+	<div class="row">
+		<input type="email" id="email" name="email" required />
+		<label for="email">Email</label>
+	</div>
+	<div class="row">
+		<input type="URL" id="URL" name="url" required />
+		<label for="URL">URL</label>
+	</div>
+	<div class="row">
+		<input list="ships" id="autoc" name="autoc" />
+		<label for="autoc">Autocomplete</label>
+		<datalist id="ships">
+			<option value="Naboo Royal Starship" />
+			<option value="Naboo Royal Cruiser" />
+			<option value="Republic Cruiser" />
+			<option value="Sith Speeder" />
+			<option value="X-34 Landspeeder" />
+			<option value="TIE Fighter" />
+			<option value="X-Wing Fighter" />
+		</datalist>
+	</div>
+	<div class="row">
+		<input type="date" id="date" name="date" list="dates" required />
+		<label for="date">Date</label>
+		<datalist id="dates">
+			<option label="Groundhog Day">2017-02-02</option>
+			<option label="Pi Day">2017-03-14</option>
+			<option label="Talk Like a Pirate Day">2017-09-19</option>
+		</datalist>
+	</div>
+	<div class="row">
+		<small>Fields marked with an asterisk (*) are required.</small>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</form>
+
+<script>
+	(function(d) {
+		// Elements
+		var form = d.getElementById('myForm');
+		var req  = form.requiredText;
+
+		// Events
+		req.addEventListener('keyup', function (event) {
+			validateZipCode(event.target);
+		}, false);
+	})(document);
+
+	// Validations
+	function validateZipCode(element) {
+		var constraint = new RegExp(/^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}$/i); // http://stackoverflow.com/a/17898538/3351720
+		if (constraint.test(element.value)) {
+			element.setCustomValidity('');
+		} else {
+			element.setCustomValidity('Enter a valid zip code\no rly!?\nya rly!');
+		}
+	}
+</script>
+</body>
+</html>

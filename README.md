@@ -1,6 +1,6 @@
 # Code Class HTML Forms & Validation
 
-Native HTML Forms & Validation for fun and profit.
+HTML Forms & Validation for fun and profit.
 
 ## Getting Started
 

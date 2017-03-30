@@ -12,67 +12,12 @@
 
 <form action="/" id="myform" method="post">
 	<div class="row">
-		<input id="text" name="text" type="text" />
+		<input id="text" name="text" type="text" required />
 		<label for="text">Text</label>
 	</div>
 	<div class="row">
-		<input id="custom" name="custom" type="text" required />
-		<label for="custom">Custom message</label>
-	</div>
-	<div class="row">
-		<input id="color" name="color" type="color" value="#0000FF" class="un-styled" />
-		<label for="color">Color</label>
-	</div>
-	<div class="row">
-		<input id="zipcode" name="zipcode"
-			   type="text"
-			   pattern="^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}"
-			   required />
-		<label for="zipcode">Zip code</label>
-	</div>
-	<div class="row">
-		<input type="email" id="email" name="email" required />
-		<label for="email">Email</label>
-	</div>
-	<div class="row">
-		<input type="URL" id="URL" name="url" required />
-		<label for="URL">URL</label>
-	</div>
-	<div class="row">
-		<input list="ships" id="autoc" name="autoc" required />
-		<label for="autoc">Autocomplete</label>
-		<datalist id="ships">
-			<option value="Naboo Royal Starship">
-			<option value="Naboo Royal Cruiser">
-			<option value="Republic Cruiser">
-			<option value="Sith Speeder">
-			<option value="X-34 Landspeeder">
-			<option value="TIE Fighter">
-			<option value="X-Wing Fighter">
-		</datalist>
-	</div>
-	<div class="row">
-		<input type="date" id="date" name="date" list="dates" required />
-		<label for="date">Date</label>
-		<datalist id="dates">
-			<option label="Groundhog Day">2017-02-02</option>
-			<option label="Pi Day">2017-03-14</option>
-			<option label="Talk Like a Pirate Day">2017-09-19</option>
-		</datalist>
-	</div>
-	<div class="row un-styled">
-		<input type="checkbox" id="checkbox1" name="checkbox1" value="checkbox1" />
-		<label for="checkbox1">Checkbox 1</label>
-		<input type="checkbox" id="checkbox2" name="checkbox2" value="checkbox2" />
-		<label for="checkbox2">Checkbox 2</label>
-	</div>
-	<div class="row un-styled">
-		<input type="radio" id="radio1" name="radio" value="radio1" class="un-styled" required />
-		<label for="radio1">Radio 1</label>
-		<input type="radio" id="radio2" name="radio" value="radio2" class="un-styled" required />
-		<label for="radio2">Radio 2</label>
-		<input type="radio" id="radio3" name="radio" value="radio3" class="un-styled" required />
-		<label for="radio3">Radio 3</label>
+		<input id="text2" name="text2" type="text" required />
+		<label for="text2">Text 2</label>
 	</div>
 	<div class="row">
 		<small>Fields marked with an asterisk (*) are required.</small>
@@ -80,59 +25,5 @@
 	</div>
 </form>
 
-<script>
-	(function(d) {
-		// Elements
-		var form = d.getElementById('myform');
-		var field = form.custom;
-		var zip = form.zipcode;
-		var btn = form.btn;
-
-		// Set checkbox intermediate to true
-		form.checkbox1.indeterminate = true;
-		form.checkbox2.indeterminate = true;
-
-		// Check if validation is supported
-		if (typeof field.willValidate !== 'undefined') {
-			if (!('required' in field)) {
-				// Required is not supported
-			} else {
-				if (field.type !== field.getAttribute('type')) {
-					// Unsupported browsers fall back to field.type = 'text'
-				} else {
-					// Init
-					validatePattern(field);
-
-					// Events
-					field.addEventListener('keyup', function (event) {
-						validatePattern(event.target, /^(foo|bar)$/i);
-					}, false);
-
-					btn.addEventListener('click', function () {
-						if (!zip.checkValidity()) {
-							if (zip.validity.valueMissing) {
-								console.info('Nothing was entered');
-							}
-
-							if (!zip.validity.valid) {
-								console.info('Value isn\'t valid');
-							}
-						}
-					}, false);
-				}
-			}
-		}
-
-		// Custom validity
-		function validatePattern(element, pattern) {
-			var constraint = new RegExp(pattern);
-			if (constraint.test(element.value)) {
-				element.setCustomValidity('');
-			} else {
-				element.setCustomValidity('❌ Error!\nEnter either foo or bar❗️');
-			}
-		}
-	})(document);
-</script>
 </body>
 </html>

@@ -16,10 +16,10 @@ small {
 	color: rgba(0, 0, 0, .5)
 }
 
-.row:not(.un-styled) {
-	display: flex;
-	flex-direction: row-reverse
-}
+/*.row:not(.un-styled) {*/
+	/*display: flex;*/
+	/*flex-direction: row-reverse*/
+/*}*/
 
 .row:last-child {
 	display: block;
